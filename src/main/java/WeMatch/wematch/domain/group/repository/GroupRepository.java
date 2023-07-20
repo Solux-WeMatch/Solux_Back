@@ -1,12 +1,15 @@
 package WeMatch.wematch.domain.group.repository;
 
+import WeMatch.wematch.domain.group.dto.TeamEventsResponseDto;
 import WeMatch.wematch.domain.group.entity.Group;
+import WeMatch.wematch.mapper.Mapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 public class GroupRepository {
     private static Map<Long, Group> groupstore = new HashMap<>();
     private static long sequence = 0L;
@@ -31,6 +34,7 @@ public class GroupRepository {
         groupstore.remove(group.getGroupId());
         return group;
     }
+
 
 //    public Todo findById(Long id){
 //        return todolist.get(id);
