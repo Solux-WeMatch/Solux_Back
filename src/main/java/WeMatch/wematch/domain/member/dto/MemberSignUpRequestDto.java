@@ -18,10 +18,6 @@ public class MemberSignUpRequestDto {
 
     //전달받은 DTO -> entity
     public Member toEntity(PasswordEncoder passwordEncoder) {
-        return Member.builder()
-                .email(this.email)
-                .password(passwordEncoder.encode(this.password))
-                .name(this.name)
-                .build();
+        return new Member(this.email,passwordEncoder.encode(this.password),this.name);
     }
 }

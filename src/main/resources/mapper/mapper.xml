@@ -11,7 +11,7 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
-        insert into Member(email,password,name) values(#{email},#{password},#{name})
+        insert into Member(email,password,name,role) values(#{email},#{password},#{name},#{role})
     </insert>
 
     <select id="findByEmail" resultType="WeMatch.wematch.domain.member.entity.Member">

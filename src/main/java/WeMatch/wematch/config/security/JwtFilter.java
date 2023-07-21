@@ -21,15 +21,20 @@ public class JwtFilter extends OncePerRequestFilter {
         //header에서 token 꺼냄
         String token = jwtProvider.resolveToken(request);
         //유효성 검사
+        System.out.println("resolveToken 성공");
         if (token != null && jwtProvider.validateToken(token)) {
             // check access token
             token = token.split(" ")[1].trim();
             //token -> Authentication 가져와서 Security context에 저장
+            System.out.println("getAuthentication call");
             Authentication auth = jwtProvider.getAuthentication(token);
+            System.out.println("getAuthentication success");
             SecurityContextHolder.getContext().setAuthentication(auth);
+            System.out.println("getSecurityContext success");
         }
 
+        System.out.println("try filetrChain");
         filterChain.doFilter(request, response);
-
+        System.out.println("success filerChain");
     }
 }
