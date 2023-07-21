@@ -1,5 +1,6 @@
 package WeMatch.wematch.mapper;
 
+import WeMatch.wematch.domain.group.dto.GetTeamResponseDto;
 import WeMatch.wematch.domain.group.dto.TeamEventsResponseDto;
 import WeMatch.wematch.domain.group.repository.TeamRepository;
 import WeMatch.wematch.domain.member.entity.Member;
@@ -22,5 +23,8 @@ public interface Mapper {
 
     //groupId -> memberId -> event : TeamEventResponseDto
     List<TeamEventsResponseDto> getEvent(Long groupId);
+
+    List<String> getTeamMembers(Long groupId);
+    String getTeamName(Long groupId);
 
 }

@@ -21,4 +21,16 @@
     <select id="getEvent" resultType="WeMatch.wematch.domain.group.dto.TeamEventsResponseDto">
 
     </select>
+
+    <select id="getTeamMembers" resultType="String">
+        select m.name
+        from team_member g
+        join member m on m.id=g.member_id2
+        where group_id2=#{groupId}
+    </select>
+    <select id="getTeamName" resultType="String">
+        select groupname
+        from team
+        where group_id=1
+    </select>
 </mapper>

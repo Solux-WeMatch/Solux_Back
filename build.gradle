@@ -41,9 +41,6 @@ dependencies {
 	//MyBatis
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
 	runtimeOnly 'mysql:mysql-connector-java:8.0.25'
-
-	//GSON : java object -> json
-	implementation 'com.google.code.gson:gson:2.8.5'
 }
 
 tasks.named('test') {

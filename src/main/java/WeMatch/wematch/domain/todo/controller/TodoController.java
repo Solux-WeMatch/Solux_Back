@@ -15,7 +15,7 @@ public class TodoController {
     public Todo createTodo(@RequestBody Todo todo) {
         return todoRepository.save(todo);
     }
-
+/*
     @PutMapping("/{id}")
     public ResponseEntity<Todo> updateTodo(@PathVariable Long TodoId, @RequestBody Todo updatedTodo) {
         Optional<Todo> todo = todoRepository.findById(TodoId);
@@ -41,5 +41,5 @@ public class TodoController {
         }
     }
 
-
+*/
 }

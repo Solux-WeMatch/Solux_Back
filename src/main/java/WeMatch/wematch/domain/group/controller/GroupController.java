@@ -16,15 +16,15 @@ public class GroupController {
     public Group createGroup(@RequestBody Group group) {
         return groupRepository.save(group);
     }
-
+/*
     // 사용자별 그룹 조회
     @GetMapping("/{id}")
     public Group showGroup(@RequestBody Group group){
         // memberId별로 속한 그룹 보여주기
     }
-
+*/
     // 그룹 삭제
-    @DeleteMapping("/{id}")
+/*    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteGroup(@PathVariable Long groupId) {
         Optional<Group> group = groupRepository.findById(groupId);
         if (group.isPresent()) {
@@ -34,6 +34,6 @@ public class GroupController {
             return ResponseEntity.notFound().build();
         }
     }
-
+*/
 
 }

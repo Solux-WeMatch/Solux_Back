@@ -1,5 +1,6 @@
 package WeMatch.wematch.domain.group.repository;
 
+import WeMatch.wematch.domain.group.dto.GetTeamResponseDto;
 import WeMatch.wematch.domain.group.dto.TeamEventsResponseDto;
 import WeMatch.wematch.mapper.Mapper;
 import lombok.RequiredArgsConstructor;
@@ -14,5 +15,14 @@ public class TeamRepository {
 
     public List<TeamEventsResponseDto> getEvent(Long groupId) {
         return teamDAO.getEvent(groupId);
+    }
+
+    public GetTeamResponseDto getTeamInfo(Long groupId) {
+        List<String> memberList= teamDAO.getTeamMembers(groupId);
+        String teamName = teamDAO.getTeamName(groupId);
+        return GetTeamResponseDto.builder()
+                .groupName(teamName)
+                .members(memberList)
+                .build();
     }
 }
