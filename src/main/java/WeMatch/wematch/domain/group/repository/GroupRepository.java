@@ -36,10 +36,6 @@ public class GroupRepository {
     }
 
 
-//    public Todo findById(Long id){
-//        return todolist.get(id);
-//    }
-
     public Group findById(Long groupId){
         return groupstore.get(groupId);
     }

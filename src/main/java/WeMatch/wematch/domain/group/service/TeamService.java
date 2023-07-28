@@ -1,17 +1,18 @@
 package WeMatch.wematch.domain.group.service;
 
 import WeMatch.wematch.domain.group.dto.GetTeamResponseDto;
+import WeMatch.wematch.domain.group.dto.SleepTimeDto;
 import WeMatch.wematch.domain.group.dto.TeamEventsResponseDto;
-import WeMatch.wematch.domain.group.repository.GroupRepository;
 import WeMatch.wematch.domain.group.repository.TeamRepository;
-import com.mysql.cj.xdevapi.JsonArray;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 @Service
 @AllArgsConstructor
@@ -28,11 +29,30 @@ public class TeamService {
         }*/
 
         List<TeamEventsResponseDto> results = teamRepository.getEvent(groupId);
-        //시간으로 나누는 작업 필요함
         return results;
+    }
+
+    public List<TeamEventsResponseDto> getResult(List<TeamEventsResponseDto> events,int weekNumber,int year) {
+        Iterator<TeamEventsResponseDto> iterator = events.iterator();
+        while(iterator.hasNext()) {
+            TeamEventsResponseDto event = iterator.next();
+            if(event.getEventStartAt().toLocalDate().get(WeekFields.ISO.weekOfYear())!=weekNumber
+                    || event.getEventStartAt().getYear()!=year) {
+                iterator.remove();
+            }
+        }
+        return events;
     }
 
     public GetTeamResponseDto getTeamInfo(Long groupId) {
         return teamRepository.getTeamInfo(groupId);
+    }
+
+    public void updateSleep(Long groupId, SleepTimeDto sleepTimeDto) {
+        teamRepository.updateSleep(groupId, sleepTimeDto);
+    }
+
+    public SleepTimeDto getSleep(Long groupId) {
+        return teamRepository.getSleep(groupId);
     }
 }

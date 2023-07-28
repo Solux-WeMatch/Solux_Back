@@ -1,8 +1,7 @@
 package WeMatch.wematch.mapper;
 
-import WeMatch.wematch.domain.group.dto.GetTeamResponseDto;
+import WeMatch.wematch.domain.group.dto.SleepTimeDto;
 import WeMatch.wematch.domain.group.dto.TeamEventsResponseDto;
-import WeMatch.wematch.domain.group.repository.TeamRepository;
 import WeMatch.wematch.domain.member.entity.Member;
 
 import java.util.List;
@@ -26,5 +25,9 @@ public interface Mapper {
 
     List<String> getTeamMembers(Long groupId);
     String getTeamName(Long groupId);
+
+    void updateSleep(Long groupId, SleepTimeDto sleepTimeDto);
+
+    SleepTimeDto getSleep(Long groupId);
 
 }

@@ -1,6 +1,7 @@
 package WeMatch.wematch.domain.group.repository;
 
 import WeMatch.wematch.domain.group.dto.GetTeamResponseDto;
+import WeMatch.wematch.domain.group.dto.SleepTimeDto;
 import WeMatch.wematch.domain.group.dto.TeamEventsResponseDto;
 import WeMatch.wematch.mapper.Mapper;
 import lombok.RequiredArgsConstructor;
@@ -24,5 +25,13 @@ public class TeamRepository {
                 .groupName(teamName)
                 .members(memberList)
                 .build();
+    }
+
+    public void updateSleep(Long groupId, SleepTimeDto sleepTimeDto) {
+        teamDAO.updateSleep(groupId, sleepTimeDto);
+    }
+
+    public SleepTimeDto getSleep(Long groupId) {
+        return teamDAO.getSleep(groupId);
     }
 }

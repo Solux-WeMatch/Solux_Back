@@ -9,24 +9,25 @@ import static org.springframework.http.HttpStatus.OK;
 
 @AllArgsConstructor
 @Getter
-@JsonPropertyOrder({"isSuccess","HTTPStatus","msg","result"})
+@JsonPropertyOrder({"status","success","message","data"})
 public class Response {
 
-    private boolean isSuccess;
-    private int HTTPStatus;
-    private String msg;
-    private Object result;
+
+    private int status;
+    private boolean success;
+    private String message;
+    private Object data;
 
     public static Response success(String message) {
-        return new Response(true,OK.value(),message,null);
+        return new Response(OK.value(),true,message,null);
     }
 
     public static Response success(String message, Object result) {
-        return new Response(true, OK.value(),message,result);
+        return new Response(OK.value(), true,message,result);
     }
 
     public static Response failure(HttpStatus status,String message) {
-        return new Response(false,status.value(),message,null);
+        return new Response(status.value(),false,message,null);
     }
 
 }

@@ -1,15 +1,13 @@
 package WeMatch.wematch.domain.group.controller;
 
+import WeMatch.wematch.domain.group.dto.SleepTimeDto;
 import WeMatch.wematch.domain.group.dto.TeamEventsResponseDto;
 import WeMatch.wematch.domain.group.service.TeamService;
 import WeMatch.wematch.response.Response;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 import static WeMatch.wematch.response.Response.success;
 import static WeMatch.wematch.response.ResponseMessage.*;
@@ -20,13 +18,29 @@ import static WeMatch.wematch.response.ResponseMessage.*;
 public class TeamPageController {
     private final TeamService teamService;
 
-    public Response getEvents(@RequestParam long groupId) {
-        List<TeamEventsResponseDto> result = teamService.getEvents(groupId);
+    @GetMapping()
+    public Response getEvents(@RequestParam long groupId,
+                              @RequestParam int weekNumber,
+                              @RequestParam int year) {
+        List<TeamEventsResponseDto> events = teamService.getEvents(groupId);
+        List<TeamEventsResponseDto> result = teamService.getResult(events,weekNumber,year);
         return success(SUCCESS_GET_TEAM_EVENTS,result);
     }
 
-    @RequestMapping("/info")
+    @GetMapping("/info")
     public Response getTeam(@RequestParam long groupId) {
         return success(SUCCESS_GET_TEAM_INFO,teamService.getTeamInfo(groupId));
+    }
+
+    @PatchMapping("/sleep")
+    public Response updateSleep(@RequestParam Long groupId,
+                                @RequestBody SleepTimeDto sleepTimeDto) {
+        teamService.updateSleep(groupId, sleepTimeDto);
+        return success(SUCCESS_INSERT_SLEEP);
+    }
+
+    @GetMapping("/sleep")
+    public Response getSleep(@RequestParam Long groupId) {
+        return success(SUCCESS_GET_SLEEP,teamService.getSleep(groupId));
     }
 }

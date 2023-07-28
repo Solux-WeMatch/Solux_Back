@@ -5,13 +5,15 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class TeamEventsResponseDto {
-    private String eventStartAt;
-    private String eventEndAt;
-    private long eventId;
-    private long memberId;
+    private LocalDateTime eventStartAt;
+    private LocalDateTime eventEndAt;
+    private Long eventId;
+    private Long memberId;
 }
