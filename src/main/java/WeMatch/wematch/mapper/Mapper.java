@@ -1,5 +1,7 @@
 package WeMatch.wematch.mapper;
 
+import WeMatch.wematch.domain.group.dto.GetFixedTimeDto;
+import WeMatch.wematch.domain.group.dto.MinuteTimeResponseDto;
 import WeMatch.wematch.domain.group.dto.SleepTimeDto;
 import WeMatch.wematch.domain.group.dto.TeamEventsResponseDto;
 import WeMatch.wematch.domain.member.entity.Member;
@@ -27,7 +29,14 @@ public interface Mapper {
     String getTeamName(Long groupId);
 
     void updateSleep(Long groupId, SleepTimeDto sleepTimeDto);
-
     SleepTimeDto getSleep(Long groupId);
 
+    void insertMinute(Long groupId,int minute);
+    MinuteTimeResponseDto getMinute(Long groupId);
+
+    void insertFixedTime(Long memberId, GetFixedTimeDto getFixedTimeDto);
+    List<Long> getTeamMembersId(Long groupId);
+    List<Long> getTeamMembersByCandidate(Long candidateId);
+    Long getTeam(Long candidateId);
+    GetFixedTimeDto getFixedTimeDto(Long candidateId);
 }

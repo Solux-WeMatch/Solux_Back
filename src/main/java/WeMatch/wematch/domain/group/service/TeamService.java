@@ -1,8 +1,6 @@
 package WeMatch.wematch.domain.group.service;
 
-import WeMatch.wematch.domain.group.dto.GetTeamResponseDto;
-import WeMatch.wematch.domain.group.dto.SleepTimeDto;
-import WeMatch.wematch.domain.group.dto.TeamEventsResponseDto;
+import WeMatch.wematch.domain.group.dto.*;
 import WeMatch.wematch.domain.group.repository.TeamRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -54,5 +52,19 @@ public class TeamService {
 
     public SleepTimeDto getSleep(Long groupId) {
         return teamRepository.getSleep(groupId);
+    }
+
+    public void insertMinute(Long groupId,int minute) {
+        teamRepository.insertMinute(groupId,minute);
+
+    }
+    public MinuteTimeResponseDto getMinute(Long groupId){
+        return teamRepository.getMinute(groupId);
+    }
+
+    public void insertFixedTime(Long candidateId) {
+        List<Long> members = teamRepository.getMembers(candidateId);
+        GetFixedTimeDto getFixedTimeDto = teamRepository.getFixedTimeDto(candidateId);
+        teamRepository.insertFixedTime(members,getFixedTimeDto);
     }
 }

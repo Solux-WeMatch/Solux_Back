@@ -1,8 +1,7 @@
 package WeMatch.wematch.domain.group.repository;
 
-import WeMatch.wematch.domain.group.dto.GetTeamResponseDto;
-import WeMatch.wematch.domain.group.dto.SleepTimeDto;
-import WeMatch.wematch.domain.group.dto.TeamEventsResponseDto;
+import WeMatch.wematch.domain.group.dto.*;
+import WeMatch.wematch.domain.member.entity.Member;
 import WeMatch.wematch.mapper.Mapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -27,11 +26,32 @@ public class TeamRepository {
                 .build();
     }
 
+
     public void updateSleep(Long groupId, SleepTimeDto sleepTimeDto) {
         teamDAO.updateSleep(groupId, sleepTimeDto);
     }
-
     public SleepTimeDto getSleep(Long groupId) {
         return teamDAO.getSleep(groupId);
+    }
+
+    public void insertMinute(Long groupId, int minute) {
+        teamDAO.insertMinute(groupId,minute);
+    }
+    public MinuteTimeResponseDto getMinute(Long groupId) {
+        return teamDAO.getMinute(groupId);
+    }
+
+
+
+    public List<Long> getMembers(Long candidateId) {
+        return teamDAO.getTeamMembersByCandidate(candidateId);
+    }
+    public GetFixedTimeDto getFixedTimeDto(Long candidateId) {
+        return teamDAO.getFixedTimeDto(candidateId);
+    }
+    public void insertFixedTime(List<Long> members, GetFixedTimeDto getFixedTimeDto) {
+        for(Long memberId:members) {
+            teamDAO.insertFixedTime(memberId, getFixedTimeDto);
+        }
     }
 }
